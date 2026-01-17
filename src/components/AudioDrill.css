@@ -776,3 +776,233 @@ input:checked+.slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+/* Mobile Menu Button (hidden on desktop) */
+.mobile-menu-btn {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background: var(--color-primary);
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.mobile-menu-btn svg {
+    display: block;
+    color: var(--bg-dark);
+}
+
+/* Sidebar Backdrop */
+.sidebar-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Mobile Styles (screens smaller than 768px) */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .sidebar-backdrop {
+        display: block;
+    }
+
+    .dashboard-container {
+        height: 100vh;
+        border-radius: 0;
+        max-width: 100%;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .sidebar-open {
+        left: 0;
+    }
+
+    .main-content {
+        width: 100%;
+        padding: var(--spacing-md);
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-md);
+        padding-top: 70px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .user-info {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .controls-section {
+        padding: var(--spacing-md);
+    }
+
+    .controls-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .control-button {
+        min-height: 56px;
+        font-size: 1.1rem;
+    }
+
+    .stats-section {
+        padding: var(--spacing-md);
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .settings-section {
+        padding: var(--spacing-md);
+    }
+
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .setting-item {
+        margin-bottom: var(--spacing-md);
+    }
+
+    .slider-container input[type="range"] {
+        height: 8px;
+    }
+
+    .slider-container input[type="range"]::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+    }
+
+    .slider-container input[type="range"]::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+    }
+
+    .voice-select {
+        min-height: 44px;
+        font-size: 1rem;
+    }
+
+    .phrase-item {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .phrase-en {
+        font-size: 1rem;
+    }
+
+    .phrase-zh {
+        font-size: 1.1rem;
+    }
+
+    .waveform-container {
+        height: 60px;
+    }
+
+    .category-select {
+        min-height: 44px;
+        font-size: 1rem;
+    }
+
+    .toggle-switch {
+        width: 56px;
+        height: 30px;
+    }
+
+    .slider:before {
+        height: 24px;
+        width: 24px;
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-header h1 {
+        font-size: 1.25rem;
+    }
+
+    .user-email {
+        font-size: 0.75rem;
+    }
+
+    .control-button {
+        font-size: 1rem;
+        padding: var(--spacing-md);
+    }
+
+    .stat-card {
+        padding: var(--spacing-sm);
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .phrase-item {
+        padding: var(--spacing-sm);
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .dashboard-container {
+        height: 100vh;
+    }
+
+    .dashboard-header {
+        padding-top: 60px;
+    }
+
+    .controls-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

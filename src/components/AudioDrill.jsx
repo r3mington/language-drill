@@ -22,6 +22,7 @@ const AudioDrill = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isShuffle, setIsShuffle] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentWord, setCurrentWord] = useState(null);
   const [voicesLoaded, setVoicesLoaded] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(0.85);
@@ -248,8 +249,29 @@ const AudioDrill = () => {
 
   return (
     <div className="dashboard-container">
+      {/* Mobile Menu Button */}
+      <button
+        className="mobile-menu-btn"
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        aria-label="Toggle menu"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      {/* Backdrop for mobile */}
+      {isSidebarOpen && (
+        <div
+          className="sidebar-backdrop"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="sidebar">
+      <aside className={`sidebar ${isSidebarOpen ? 'sidebar-open' : ''}`}>
         <div className="sidebar-header">
           <div className="header-row">
             <h2>Phrases {isShuffle && <span className="shuffle-badge">(Shuffle)</span>}</h2>
