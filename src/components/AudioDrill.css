@@ -776,6 +776,7 @@ input:checked+.slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
 /* ============================================
    MOBILE RESPONSIVE STYLES
    ============================================ */
@@ -832,6 +833,7 @@ input:checked+.slider:before {
         height: 100vh;
         border-radius: 0;
         max-width: 100%;
+        overflow-x: hidden;
     }
 
     .sidebar {
@@ -852,58 +854,68 @@ input:checked+.slider:before {
 
     .main-content {
         width: 100%;
-        padding: var(--spacing-md);
-    }
-
-    .dashboard-header {
+        max-width: 100vw;
+        padding: 0;
+        display: flex;
         flex-direction: column;
-        gap: var(--spacing-sm);
-        padding: var(--spacing-md);
-        padding-top: 70px;
+        overflow-x: hidden;
     }
 
-    .dashboard-header h1 {
-        font-size: 1.5rem;
+    /* Force hide header and all its children on mobile */
+    .dashboard-header,
+    .dashboard-header * {
+        display: none !important;
     }
 
-    .user-info {
-        width: 100%;
-        justify-content: space-between;
-    }
-
+    /* Move controls to top */
     .controls-section {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
+        order: -1;
     }
 
     .controls-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: var(--spacing-sm);
     }
 
     .control-button {
-        min-height: 56px;
-        font-size: 1.1rem;
+        min-height: 60px;
+        font-size: 1.2rem;
+        font-weight: 600;
     }
 
+    /* Hide stats on mobile to save space */
     .stats-section {
-        padding: var(--spacing-md);
+        display: none;
     }
 
-    .stats-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
-    }
-
+    /* Compact settings section */
     .settings-section {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
+        margin: var(--spacing-sm);
+    }
+
+    .settings-title {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-xs);
     }
 
     .settings-grid {
         grid-template-columns: 1fr;
+        gap: var(--spacing-xs);
     }
 
     .setting-item {
-        margin-bottom: var(--spacing-md);
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .setting-label {
+        font-size: 0.85rem;
+        margin-bottom: 4px;
+    }
+
+    .slider-value {
+        font-size: 0.85rem;
     }
 
     .slider-container input[type="range"] {
@@ -938,8 +950,40 @@ input:checked+.slider:before {
         font-size: 1.1rem;
     }
 
+    /* Hide waveform completely on mobile */
     .waveform-container {
-        height: 60px;
+        display: none;
+    }
+
+    /* Make current phrase card smaller and more compact */
+    .current-phrase-display {
+        padding: var(--spacing-md);
+        min-height: 35vh;
+        max-height: 40vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: var(--spacing-sm);
+    }
+
+    .current-phrase-display .phrase-en {
+        font-size: 1.2rem;
+        margin-bottom: var(--spacing-sm);
+        line-height: 1.4;
+    }
+
+    .current-phrase-display .phrase-zh {
+        font-size: 1.6rem;
+        margin-bottom: var(--spacing-xs);
+        line-height: 1.3;
+    }
+
+    .current-phrase-display .phrase-pinyin {
+        font-size: 1.1rem;
+        color: var(--color-primary);
+        line-height: 1.3;
     }
 
     .category-select {
@@ -957,7 +1001,7 @@ input:checked+.slider:before {
         width: 24px;
     }
 
-    input:checked + .slider:before {
+    input:checked+.slider:before {
         transform: translateX(26px);
     }
 }

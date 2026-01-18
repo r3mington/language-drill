@@ -1,0 +1,151 @@
+.drill-view {
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Phrase Sections */
+.phrase-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.english-section {
+    background: #03dbd8;
+}
+
+.chinese-section {
+    background: #1a1a1a;
+}
+
+.phrase-content {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.phrase-text {
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+.english-section .phrase-text {
+    color: #1a1a1a;
+}
+
+.chinese-text {
+    font-size: 2.25rem;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+}
+
+.phrase-pinyin {
+    font-size: 1.25rem;
+    color: #03dbd8;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Control Strip */
+.control-strip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 1.5rem;
+    background: rgba(26, 26, 26, 0.95);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.control-btn {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #03dbd8;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+    background: rgba(3, 219, 216, 0.1);
+    transform: scale(1.1);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+.play-btn {
+    background: #03dbd8;
+    color: #1a1a1a;
+}
+
+.play-btn:hover {
+    background: #02b3b1;
+}
+
+/* No Phrases State */
+.no-phrases {
+    text-align: center;
+    color: #888;
+    padding: 2rem;
+}
+
+.no-phrases p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.hint {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .phrase-section {
+        padding: 1.5rem;
+    }
+
+    .phrase-text {
+        font-size: 1.4rem;
+    }
+
+    .chinese-text {
+        font-size: 1.8rem;
+    }
+
+    .phrase-pinyin {
+        font-size: 1.1rem;
+    }
+
+    .control-strip {
+        gap: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .control-btn {
+        width: 44px;
+        height: 44px;
+    }
+}
