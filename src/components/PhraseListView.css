@@ -1,5 +1,7 @@
 .phrase-list-view {
     height: 100vh;
+    width: 100vw;
+    max-width: 100%;
     background: #1a1a1a;
     display: flex;
     flex-direction: column;
