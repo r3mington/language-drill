@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { usePhrases } from '../hooks/usePhrases';
 import { useUserProgress } from '../hooks/useUserProgress';
+import { useWakeLock } from '../hooks/useWakeLock';
 import DrillView from './DrillView';
 import PhraseListView from './PhraseListView';
 import SettingsView from './SettingsView';
@@ -21,8 +22,20 @@ const AudioDrill = () => {
   const { user, signOut } = useAuth();
   const { phrases, loading: phrasesLoading, error: phrasesError } = usePhrases();
   const { progress, updateProgress, loading: progressLoading } = useUserProgress();
+  const { requestLock, releaseLock } = useWakeLock();
 
   const [isPlaying, setIsPlaying] = useState(false);
+
+
+
+  // Manage Wake Lock based on playback state
+  useEffect(() => {
+    if (isPlaying) {
+      requestLock();
+    } else {
+      releaseLock();
+    }
+  }, [isPlaying, requestLock, releaseLock]);
   const [isShuffle, setIsShuffle] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
