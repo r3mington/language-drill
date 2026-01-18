@@ -75,12 +75,16 @@ const AdminDashboard = () => {
         if (!window.confirm('Are you sure you want to delete this phrase?')) return;
 
         try {
-            const { error } = await supabase
+            const { error, count } = await supabase
                 .from('phrases')
-                .delete()
+                .delete({ count: 'exact' })
                 .eq('id', id);
 
             if (error) throw error;
+
+            if (count === 0) {
+                throw new Error('Could not delete phrase. You may not have permission.');
+            }
 
             setPhrases(phrases.filter(p => p.id !== id));
         } catch (err) {
