@@ -268,3 +268,42 @@
         opacity: 1;
     }
 }
+
+/* Bulk Actions Bar */
+.bulk-actions-bar {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+}
+
+.selected-count {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.bulk-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Selected Row Highlighting */
+.selected-row td {
+    background: rgba(3, 219, 216, 0.05);
+}
+
+.admin-table input[type="checkbox"] {
+    cursor: pointer;
+    width: 1.2em;
+    height: 1.2em;
+}
