@@ -66,7 +66,8 @@ const AudioDrill = () => {
       english: p.english,
       chinese: p.chinese,
       pinyin: p.pinyin,
-      category: p.category
+      category: p.category,
+      example: p.example
     }));
 
     // Filter by category
