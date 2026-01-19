@@ -29,38 +29,27 @@ const ImportModal = ({ isOpen, onClose, onImportSuccess }) => {
 
             const existingEnglishSet = new Set(existingPhrases.map(p => p.english.toLowerCase().trim()));
 
-            // 2. Parse CSV
-            // 2. Parse CSV
+            // 2. Parse CSV with header detection
             Papa.parse(file, {
-                header: false, // Changed to false to handle files without headers
+                header: true, // Enable header-based parsing
                 skipEmptyLines: true,
+                transformHeader: (header) => header.toLowerCase().trim(),
                 complete: async (results) => {
                     try {
                         const rawRows = results.data;
                         const validRows = [];
                         let skippedCount = 0;
-                        let startingIndex = 0;
-
-                        // Check if first row is a header
-                        if (rawRows.length > 0 &&
-                            typeof rawRows[0][0] === 'string' &&
-                            rawRows[0][0].toLowerCase().trim() === 'english') {
-                            startingIndex = 1;
-                        }
 
                         // 3. Process each row
-                        for (let i = startingIndex; i < rawRows.length; i++) {
+                        for (let i = 0; i < rawRows.length; i++) {
                             const row = rawRows[i];
 
-                            // Handle array-based rows (Column A = English, Column B = Chinese)
-                            const englishText = row[0];
-                            const chineseText = row[1];
-                            // Optional columns if they exist
-                            const categoryText = row[2];
-                            const difficultyText = row[3];
-                            // Check for example in column 4 or 5 depending on CSV structure
-                            // Standard: English, Chinese, Category, Difficulty, Example
-                            const exampleText = row[4];
+                            // Extract fields by header name (case-insensitive)
+                            const englishText = row['english'] || row['en'];
+                            const chineseText = row['chinese'] || row['zh'] || row['mandarin'];
+                            const exampleText = row['example'] || row['simple example phrase in chinese'] || row['sentence'] || row['usage'];
+                            const categoryText = row['category'] || row['cat'];
+                            const difficultyText = row['difficulty'] || row['difficulty_level'] || row['level'];
 
                             // Basic validation
                             if (!englishText || !chineseText) {
@@ -74,7 +63,7 @@ const ImportModal = ({ isOpen, onClose, onImportSuccess }) => {
                                 continue;
                             }
 
-                            // Generate Pinyin if missing (or provided in column 3/4 if user gets really fancy, but for now auto-gen)
+                            // Generate Pinyin
                             const phrasePinyin = pinyin(chineseText);
 
                             validRows.push({
