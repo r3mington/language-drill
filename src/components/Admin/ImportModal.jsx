@@ -58,6 +58,9 @@ const ImportModal = ({ isOpen, onClose, onImportSuccess }) => {
                             // Optional columns if they exist
                             const categoryText = row[2];
                             const difficultyText = row[3];
+                            // Check for example in column 4 or 5 depending on CSV structure
+                            // Standard: English, Chinese, Category, Difficulty, Example
+                            const exampleText = row[4];
 
                             // Basic validation
                             if (!englishText || !chineseText) {
@@ -80,7 +83,8 @@ const ImportModal = ({ isOpen, onClose, onImportSuccess }) => {
                                 pinyin: phrasePinyin,
                                 category: categoryText || 'general',
                                 difficulty_level: parseInt(difficultyText) || 1,
-                                is_active: true
+                                is_active: true,
+                                example: exampleText ? exampleText.trim() : null
                             });
                         }
 
@@ -135,7 +139,7 @@ const ImportModal = ({ isOpen, onClose, onImportSuccess }) => {
                             <p className="modal-description">
                                 Upload a CSV file with columns: <code>english</code>, <code>chinese</code>.
                                 <br />
-                                Optional: <code>category</code>, <code>difficulty_level</code>.
+                                Optional: <code>category</code>, <code>difficulty_level</code>, <code>example</code>.
                                 <br />
                                 Pinyin will be auto-generated if missing. Duplicates will be skipped.
                             </p>

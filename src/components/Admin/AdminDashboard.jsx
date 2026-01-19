@@ -249,6 +249,7 @@ const AdminDashboard = () => {
                                 <th>English</th>
                                 <th>Chinese</th>
                                 <th>Pinyin</th>
+                                <th>Example</th>
                                 <th>Category</th>
                                 <th>Actions</th>
                             </tr>
@@ -266,6 +267,11 @@ const AdminDashboard = () => {
                                     <td>{phrase.english}</td>
                                     <td>{phrase.chinese}</td>
                                     <td>{phrase.pinyin || '-'}</td>
+                                    <td>
+                                        <div style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={phrase.example}>
+                                            {phrase.example || '-'}
+                                        </div>
+                                    </td>
                                     <td>
                                         <span className="category-tag">{phrase.category || 'General'}</span>
                                     </td>

@@ -9,12 +9,16 @@ const PhraseForm = ({ initialData, onSubmit, onCancel, loading }) => {
         category: 'general',
         difficulty_level: 1,
         sort_order: 0,
-        is_active: true
+        is_active: true,
+        example: ''
     });
 
     useEffect(() => {
         if (initialData) {
-            setFormData(initialData);
+            setFormData({
+                ...initialData,
+                example: initialData.example || ''
+            });
         }
     }, [initialData]);
 
@@ -54,6 +58,18 @@ const PhraseForm = ({ initialData, onSubmit, onCancel, loading }) => {
                     onChange={handleChange}
                     required
                     placeholder="e.g. 早上好"
+                />
+            </div>
+
+            <div className="form-group">
+                <label>Example Sentence (Mandarin)</label>
+                <textarea
+                    name="example"
+                    value={formData.example}
+                    onChange={handleChange}
+                    placeholder="e.g. 老师，早上好！ (Teacher, good morning!)"
+                    rows="2"
+                    style={{ resize: 'vertical' }}
                 />
             </div>
 
