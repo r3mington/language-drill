@@ -57,6 +57,15 @@
     font-weight: 400;
 }
 
+.phrase-example {
+    font-size: 1rem;
+    color: #888;
+    margin: 0.75rem 0 0 0;
+    font-weight: 300;
+    line-height: 1.5;
+    font-style: italic;
+}
+
 /* Control Strip */
 .control-strip {
     position: absolute;

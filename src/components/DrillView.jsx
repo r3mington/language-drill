@@ -76,6 +76,9 @@ const DrillView = ({
                     {currentPhrase.pinyin && (
                         <p className="phrase-pinyin">{currentPhrase.pinyin}</p>
                     )}
+                    {currentPhrase.example && (
+                        <p className="phrase-example">{currentPhrase.example}</p>
+                    )}
                 </div>
             </div>
         </div>
